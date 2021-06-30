@@ -6,7 +6,7 @@
  ********************************************/
 ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./clases/style.css">
 </head>
 <body>
     <div class="noprint">
@@ -31,32 +31,6 @@
             </thead>
             <tbody>
                 <?php
-                if ($_GET) {
-                    $conn = sqlsrv_connect($serverName, $connectionOptions);
-                    $tsql = "select id,job_name from DailyJobs order by 2";
-                    $getResults = sqlsrv_query($conn, $tsql);
-                    $dd = '<select name="logid[]">';
-                    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-                        $dd .= '<option value="' . $row['id'] . '">' . $row['job_name'] . '</option>';
-                        //$i++;
-                    } //end while
-                    $dd .= '</select>';
-                    if ($_GET['logs'] <= 0) {
-                        $control = 1;
-                    } else {
-                        $control = $_GET['logs'];
-                    }
-                    for ($i = 0; $i < $control; $i++) {
-                        echo '<tr>
-                            <th colspan="4">' . $i + 1 . '. ' . $dd . '</th>
-                            <th>Time:</th>
-                            <th><input type="datetime-local" name="time[]" placeholder="runtime" required></th>
-                            <th><input type="number" min="0" max="24" name="hh[]" style="width: 30px;"></th>
-                            <th><input type="number" min="0" max="59" name="min[]" style="width: 30px;"></th>
-                            <th><input type="number" min="0" max="59" name="ss[]" style="width: 30px;" required></th>
-                            </tr>';
-                    }
-                } else {
                     //form with logs from DB
                     !empty($POST) ? $logDate = $_POST['txtDate'] : $logDate = date('Y-m-d');
                     $conn = sqlsrv_connect($serverName, $connectionOptions);
@@ -81,7 +55,6 @@
                             </tr>';
                         
                     } //end while
-                } //end if get
                 ?>
                 <tr><th colspan="9"><textarea name="notes" rows="4" cols="100" placeholder="Notas"></textarea></th></tr>
                 <tr>
@@ -107,7 +80,7 @@
                 echo '<th colspan="9" style="text-align: center;">' . $print . '</th>
                     <tr>
                     <th colspan="9" style="text-align: center;" class="noprint">
-                        <form id="form_2" action="index.php" target="_self" method="POST">
+                        <form id="form_2" action="jobs.php" target="_self" method="POST">
                         <input type="date" id="txtDate" name="txtDate" class="noprint" required>
                         <input type="hidden" name="option" value="1">
                         <input type="submit" name="submit1" value="View date logs" class="noprint">

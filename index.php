@@ -6,16 +6,13 @@ $f3->route('GET /',
         $obj = new Grito("Danny");
     }
 );
-$f3->route('GET /about',
-    function() {
-        echo 'Donations go to a local charity... us!';
-    }
-);
+
 $f3->route('GET /jobs',
     function($f3) {
-        //$obj = new jobs($f3->get('PARAMS.count'));
         require_once("./clases/jobs.php");
-        
+        // $f3->set('html_title','XXX Home');
+        // $f3->set('content','./clases/jobs.php');
+        //echo Template::instance()->render('./ui/layout.htm');
     }
 );
 $f3->route('GET /jobs/*',
@@ -23,11 +20,9 @@ $f3->route('GET /jobs/*',
         echo 'Enough beer! We always end up here.';
     }
 );
-$f3->route('GET /grito/@count',
+$f3->route('GET /params/',
     function($f3) {
-        $obj = new Grito($f3->get('PARAMS.count'));
-        
-        echo "<br>el maldito numero es $obj->get_name($f3->get('PARAMS.count')) ";
+        require_once("./params.php");
     }
 );
 $f3->run();
