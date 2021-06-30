@@ -37,7 +37,6 @@
     </div>
     <div>
         <?php
-        if($_POST){
             //print_r($_POST);
             if($f3->get('POST.req') == 1){
                 $x = $f3->get('POST.itemID'); //$proj = $_POST['proj'];
@@ -47,7 +46,11 @@
             }elseif ($f3->get('POST.req') == 2) {
                 $x = $f3->get('POST.optID');
                 $value = $f3->get('POST.optVal');
-                echo updateItem($x,$value);
+                $itemID = $f3->get('POST.itemID');
+                echo updateItem($x,$value,);
+                echo getItems("select id,opt_name,opt_value,pkg_id
+                from [dbo].[tbl_PackageOptions]
+                where pkg_id =",$itemID);
             }elseif ($f3->get('POST.req') == 3) {
                 $x = $f3->get('POST.txtParam');
                 $value = $f3->get('POST.txtValue');
@@ -57,7 +60,6 @@
                 from [dbo].[tbl_PackageOptions]
                 where pkg_id =",$itemID);
             }
-        }
         ?>
         </table>
     </div>

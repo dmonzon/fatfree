@@ -22,7 +22,7 @@ function getItems($tsql,$x){
     <th colspan="1" style="text-align: center;">Value</th></tr>';
     //$i = 0;
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_NUMERIC)) {
-        $items .= '<form name="forma" action="/clases/params" target="_self" method="POST">
+        $items .= '<form name="forma" action="/fatfree/params" target="_self" method="POST">
             <tr><th style="text-align: right;">
                 <input type="hidden" value="' . $row[0] . '" name="optID">
                 <label>' . $row[1] . '</th><th>
@@ -64,17 +64,25 @@ function getItems($tsql,$x){
 function updateItem($val,$itemID){
     require("cn.php");
     $conn = sqlsrv_connect($serverName, $connectionOptions);
-    $tsql = "UPDATE dbo.tbl_PackageOptions SET opt_value = (?), updated = (select GETDATE()) WHERE id = (?)"; 
-    $val = $f3->get('POST.optVal');
-    $itemID = $f3->get('POST.optID');
-    $params = array($val,$itemID);
-    $stmt = sqlsrv_prepare( $conn, $tsql, $params);  
-    if( sqlsrv_execute( $stmt))  
+    $tsql = "UPDATE dbo.tbl_PackageOptions SET opt_value = ( ? ), updated = (select GETDATE()) WHERE id = ( ? )"; 
+    // $val = $f3->get('POST.optVal');
+    // $itemID = $f3->get('POST.optID');
+    //echo($val)."<br>";
+    //echo($itemID)."<br>";
+    $params = array($itemID,$val);
+    //print_r($params);
+    $stmt = sqlsrv_prepare( $conn, $tsql, $params); 
+    if (!$stmt) {
+        die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true)); ;
+    }else{
+        //print_r($stmt);
+    }
+    if( sqlsrv_execute($stmt))  
     {  
-        return '<h1 style="color:green;"> Successfully updated!</h1>';  
+        return '<h1 style="color:green; text-align:center;"> Successfully updated!</h1>';  
     }else{  
         //return "Error in executing statement.$val[$i] :: $itemID[$i]\n";  
-        die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true));  
+        die( "<pre>".print_r( sqlsrv_errors(), true))."</pre>";//die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true));  
     }
     sqlsrv_free_stmt( $stmt);  
     sqlsrv_close( $conn);
@@ -88,7 +96,7 @@ function addParam($name,$value,$itemID){
     $stmt = sqlsrv_prepare( $conn, $tsql, $params);  
     if( sqlsrv_execute( $stmt))  
     {  
-        //return '<h1 style="color:green; text-align:center;">Successfully recorded!</h1>';  
+        return '<h1 style="color:green; text-align:center;">Successfully recorded!</h1>';  
     }else{  
         die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true)); 
     }
