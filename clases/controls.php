@@ -1,9 +1,9 @@
 <?php
 //functions
 function ddBuilder($name,$size,$class,$tsql,$item){
-    require("cn.php");
+    require("cn.php");echo "<pre>";
     $conn = sqlsrv_connect($serverName, $connectionOptions);
-    $getResults = sqlsrv_query($conn, $tsql);
+    $getResults = sqlsrv_query($conn, $tsql) ;
     $dd = '<select onDblClick="alert(this.value)" name="'.$name.'" size="'.$size.' class="'.$class.' style="width: 80%;"" required>';
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_NUMERIC)) {
         $selected = ($item == $row[0]) ? ' selected>' : ' >';
@@ -22,7 +22,7 @@ function getItems($tsql,$x){
     <th colspan="1" style="text-align: center;">Value</th></tr>';
     //$i = 0;
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_NUMERIC)) {
-        $items .= '<form name="forma" action="params.php" target="_self" method="POST">
+        $items .= '<form name="forma" action="/clases/params" target="_self" method="POST">
             <tr><th style="text-align: right;">
                 <input type="hidden" value="' . $row[0] . '" name="optID">
                 <label>' . $row[1] . '</th><th>
@@ -46,7 +46,7 @@ function getItems($tsql,$x){
             </th>
         </tr>
         <tr>
-            <form name="main1" action="params.php" target="_self" method="POST">
+            <form name="main1" action="/fatfree/params" target="_self" method="POST">
             <th>
                 <input type="text" name="txtParam" placeholder="Panam Name" style="width: 80%;" required>
             </th>
@@ -65,8 +65,8 @@ function updateItem($val,$itemID){
     require("cn.php");
     $conn = sqlsrv_connect($serverName, $connectionOptions);
     $tsql = "UPDATE dbo.tbl_PackageOptions SET opt_value = (?), updated = (select GETDATE()) WHERE id = (?)"; 
-    $val = $_POST['optVal'];
-    $itemID = $_POST['optID'];
+    $val = $f3->get('POST.optVal');
+    $itemID = $f3->get('POST.optID');
     $params = array($val,$itemID);
     $stmt = sqlsrv_prepare( $conn, $tsql, $params);  
     if( sqlsrv_execute( $stmt))  
@@ -74,7 +74,7 @@ function updateItem($val,$itemID){
         return '<h1 style="color:green;"> Successfully updated!</h1>';  
     }else{  
         //return "Error in executing statement.$val[$i] :: $itemID[$i]\n";  
-        die( print_r( sqlsrv_errors(), true));  
+        die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true));  
     }
     sqlsrv_free_stmt( $stmt);  
     sqlsrv_close( $conn);
@@ -88,10 +88,11 @@ function addParam($name,$value,$itemID){
     $stmt = sqlsrv_prepare( $conn, $tsql, $params);  
     if( sqlsrv_execute( $stmt))  
     {  
-        return '<h1 style="color:green;">Successfully recorded!</h1>';  
+        //return '<h1 style="color:green; text-align:center;">Successfully recorded!</h1>';  
     }else{  
-        die( print_r( sqlsrv_errors(), true));  
+        die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true)); 
     }
     sqlsrv_free_stmt( $stmt);  
-    sqlsrv_close( $conn); 
+    sqlsrv_close( $conn);
+
 }
