@@ -28,7 +28,7 @@ td, th {
 }
 
 a:link {
-	color: red;
+	color: blue;
 	}
 	
 	/* visited link */
@@ -38,7 +38,7 @@ a:link {
 	
 	/* mouse over link */
 	a:hover {
-	color:purple;
+	color:green;
 	}
 	
 	/* selected link */
