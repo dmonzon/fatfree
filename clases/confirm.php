@@ -15,7 +15,7 @@
             <tr>
                 <th colspan="4">DAILY CK LIST</th>
                 <th colspan="2">DATE: <?php echo $f3->get('POST.txtDate'); ?></th>
-                <th><input type="button" name="submit1" value="Print" onclick="javascript:window.print()" class="noprint"></th>
+                <th><button onclick="javascript:window.print()" class="dentro">Print</button></th>
             </tr>
             <tr>
                 <th colspan="4">Server:<span style="font-style:oblique;"><h3>VHAMSL10SVR</h3></span> </th>

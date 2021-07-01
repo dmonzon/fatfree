@@ -6,7 +6,7 @@
  ********************************************/
 ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo $f3->get('BASE');?>/ui/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/ham/ui/css/style.css">
 </head>
 <body>
     <div class="noprint">
@@ -23,10 +23,9 @@
                                 <h3>VHAMSL10SVR</h3>
                             </span> 
                         </th>
-                        <th colspan="2" style="text-align: center;">
+                        <th colspan="5" style="text-align: center;">
                             <input type="date" id="txtDate" name="txtDate" placeholder="mm/dd/yyyy" value="<?php echo (!empty($f3->get('POST.txtDate'))) ? $f3->get('POST.txtDate') : date('Y-m-d'); ?>">
                         </th>
-                        <th colspan="3" style="text-align: center;">HH - MM - SS</th>
                     </tr>
             </thead>
             <tbody>
@@ -52,9 +51,9 @@
                             <th colspan="4">' . $i + 1 . '. ' . $dd . '</th>
                             <th>Time:</th>
                             <th><input type="datetime-local" name="time[]" placeholder="runtime" value="'.date('Y-m-d\T00:00').'" required></th>
-                            <th><input type="number" min="0" max="24" name="hh[]" style="width: 30px;"></th>
-                            <th><input type="number" min="0" max="59" name="min[]" style="width: 30px;"></th>
-                            <th><input type="number" min="0" max="59" name="ss[]" style="width: 30px;" required></th>
+                            <th><input type="number" min="0" max="24" name="hh[]" style="width: 50px;"></th>
+                            <th><input type="number" min="0" max="59" name="min[]" style="width: 50px;"></th>
+                            <th><input type="number" min="0" max="59" name="ss[]" style="width: 50px;" required></th>
                             </tr>';
                     }
                 }else{
@@ -70,11 +69,10 @@
                         $i++;
                         echo '<tr>
                             <th colspan="4">' . $i . '. ' . $row['job_name'] . '<input type="hidden" name="logid[]" value="' . str_replace(' ', '', $row['id']) . '"></th>
-                            <th>Runtime:</th>
-                            <th><input type="datetime-local" name="time[]" placeholder="runtime" value="'.date('Y-m-d\T00:00').'" required></th>
-                            <th><input type="number" min="0" max="24" name="hh[]" style="width: 30px;" ></th>
-                            <th><input type="number" min="0" max="59" name="min[]" style="width: 30px;"></th>
-                            <th><input type="number" min="0" max="59" name="ss[]" style="width: 30px;" required></th>
+                            <th>Runtime: <input type="datetime-local" name="time[]" placeholder="runtime" value="'.date('Y-m-d\T00:00').'" required></th>
+                            <th><input type="number" min="0" max="24" name="hh[]" placeholder="hh" ></th>
+                            <th><input type="number" min="0" max="59" name="min[]" placeholder="mm"></th>
+                            <th><input type="number" min="0" max="59" name="ss[]" placeholder="ss" required></th>
                             </tr>';
                         
                     } //end while
@@ -90,7 +88,7 @@
                 </tr>
         </table>
     </div>
-    <div class="print" style="margin-top:0pc;">
+    <div class="print">
         <table>
             <thead>
                 <?php

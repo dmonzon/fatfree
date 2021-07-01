@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:600&display=swap");
-
 
 table { 
-	width: 750px; 
+	width: 750px;
 	border-collapse: collapse; 
 	margin:50px auto;
 	color: black;
@@ -15,7 +13,7 @@ tr:nth-of-type(odd) {
 
 th { 
 	background: #ffffff; 
-	color: white; 
+	color: black; 
 	font-weight: bold; 
 	}
 
@@ -26,9 +24,11 @@ td, th {
 	text-align: left; 
 	font-size: 18px;
 }
-
+textarea {
+	max-width:95%;
+}
 a:link {
-	color: blue;
+	color: red;
 	}
 	
 	/* visited link */
@@ -38,44 +38,41 @@ a:link {
 	
 	/* mouse over link */
 	a:hover {
-	color:green;
+	color:darkred;
 	}
 	
 	/* selected link */
 	a:active {
-	color: green;
+	color: chocolate;
 }
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+
 
 button {
 	background: white;
-	border: 0.125em solid black;
+	border: 0.125em solid red;
 	cursor: pointer;
 	/* font: 250 0.4rem/1.25 ; */
-	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-family:sans-serif;
+	font-weight: bold;
 	font-size: xx-small;
 	letter-spacing: 0.170em;
 	margin: 0.5rem;
 	padding: 0.5em 0.75em;
 	position: relative;
 	text-transform: uppercase;
-  }
+}
 button:before, button:after {
 	content: "";
 	position: absolute;
 	transition: all 0.125s ease-in-out;
-  }
+}
 button.border {
 	background: none;
 	border-color: transparent;
-  }
+}
 button.border:before, button.border:after {
 	transition: all 0.175s ease-in-out;
-  }
+}
 button.border:before {
 	background: black;
 	border: 0px dashed black;
@@ -84,11 +81,11 @@ button.border:before {
 	right: -0.125em;
 	bottom: -0.125em;
 	z-index: -1;
-  }
+}
 button.border:hover:before, button.border:focus:before {
 	background: white;
 	border-width: 0.125em;
-  }
+}
 button.border:after {
 	background: white;
 	bottom: 0;
@@ -96,7 +93,7 @@ button.border:after {
 	right: 0;
 	top: 0;
 	z-index: -1;
-  }
+}
 button.sombra:after {
 	border: 0.125em dashed black;
 	bottom: -0.125em;
@@ -104,26 +101,26 @@ button.sombra:after {
 	right: -0.125em;
 	top: -0.125em;
 	z-index: -1;
-  }
+}
 button.sombra:hover:after, button.sombra:focus:after {
 	bottom: -0.375em;
 	left: 0.125em;
 	right: -0.375em;
 	top: 0.125em;
-  }
+}
 button.dentro:after {
-	border: 0.125em dashed black;
+	border: 0.125em dashed red;
 	bottom: -0.125em;
 	left: -0.125em;
 	right: -0.125em;
 	top: -0.125em;
-  }
+}
 button.dentro:hover:after, button.dentro:focus:after {
 	bottom: 0.125em;
 	left: 0.125em;
 	right: 0.125em;
 	top: 0.125em;
-  }
+}
 
 
 @media 
