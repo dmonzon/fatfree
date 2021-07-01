@@ -22,7 +22,7 @@ function getItems($tsql,$x){
     <th colspan="1" style="text-align: center;">Value</th></tr>';
     //$i = 0;
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_NUMERIC)) {
-        $items .= '<form name="forma" action="/fatfree/params" target="_self" method="POST">
+        $items .= '<form name="forma" action="'. $f3->get('BASE').'/params" target="_self" method="POST">
             <tr><th style="text-align: right;">
                 <input type="hidden" value="' . $row[0] . '" name="optID">
                 <label>' . $row[1] . '</th><th>
@@ -46,7 +46,7 @@ function getItems($tsql,$x){
             </th>
         </tr>
         <tr>
-            <form name="main1" action="/fatfree/params" target="_self" method="POST">
+            <form name="main1" action="'.$f3->get('BASE').'/params" target="_self" method="POST">
             <th>
                 <input type="text" name="txtParam" placeholder="Panam Name" style="width: 80%;" required>
             </th>

@@ -6,7 +6,7 @@
  ********************************************/
 ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="./clases/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $f3->get('BASE');?>/ui/css/style.css">
 </head>
 <body>
     <div>
@@ -82,5 +82,5 @@
             </tbody>    
         </table>
     </div>
-    <div class="noprint" style="text-align: center; color: red"><a href="/fatfree/jobs">Home</a></div>
+    <div class="noprint" style="text-align: center; color: red"><a href="<?php echo $f3->get('BASE');?>/jobs">Home</a></div>
 </body>

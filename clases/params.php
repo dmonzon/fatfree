@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./clases/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $f3->get('BASE');?>/ui/css/style.css">
 </head>
 <script type="text/javascript">
     $(function(){
@@ -23,7 +23,7 @@
                             Projects
                         </th>
                         <th colspan="2" style="text-align: center;">
-                            <form name="main" action="/fatfree/params" target="_self" method="POST">
+                            <form name="main" action="<?php echo $f3->get('BASE');?>/params" target="_self" method="POST">
                                 <?php 
                                     ($f3->get('POST.itemID')) ? $item = $f3->get('POST.itemID') : $item = 0;
                                     echo ddBuilder('itemID',10,'',"select id,p.pkgName,p.description from tbl_Packages p order by 2",$item);

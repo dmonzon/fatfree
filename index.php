@@ -13,7 +13,6 @@ $f3->route('GET /jobs',
 );
 $f3->route('GET /jobs/@count',
     function($f3) {
-        //$f3->logs = $f3->get('PARAMS.count');
         include("./ui/header.php");
         require("./clases/jobs.php");
     }

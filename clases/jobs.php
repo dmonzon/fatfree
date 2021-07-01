@@ -6,13 +6,13 @@
  ********************************************/
 ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="/fatfree/clases/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $f3->get('BASE');?>/ui/css/style.css">
 </head>
 <body>
     <div class="noprint">
         <table>
             <thead>
-                <form id="main" action="/fatfree/confirm" target="_self" method="POST">
+                <form id="main" action="<?php echo $f3->get('BASE');?>/confirm" target="_self" method="POST">
                     <tr>
                         <th colspan="4">DAILY CK LIST</th>
                         <th colspan="5" style="text-align: center;">DATE</th>
@@ -107,10 +107,10 @@
                 echo '<th colspan="9" style="text-align: center;">' . $print . '</th>
                     <tr>
                     <th colspan="9" style="text-align: center;" class="noprint">
-                        <form id="form2" action="/fatfree/jobs" target="_self" method="POST">
+                        <form id="form2" action="'. $f3->get('BASE').'/jobs" target="_self" method="POST">
                         <input type="date" id="txtDate" name="txtDate" class="noprint" required>
                         <input type="hidden" name="option" value="1">
-                        <input type="submit" name="submit1" value="1View date logs" class="noprint">
+                        <input type="submit" name="submit1" value="View date logs" class="noprint">
                         <input type="button" name="submit1" value="Print" onclick="javascript:window.print()" class="noprint">
                         </form>
                     </th>
