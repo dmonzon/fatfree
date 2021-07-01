@@ -84,7 +84,7 @@
                 <tr>
                     <th colspan="10">
                         <input type="hidden" name="total" value="<?php echo $i - 1; ?>">
-                        <input type="submit" name="submit" value="Submit">
+                        <button class="dentro">Submit</button>
                     </form>
                     </th>
                 </tr>
@@ -110,8 +110,8 @@
                         <form id="form2" action="'. $f3->get('BASE').'/jobs" target="_self" method="POST">
                         <input type="date" id="txtDate" name="txtDate" class="noprint" required>
                         <input type="hidden" name="option" value="1">
-                        <input type="submit" name="submit1" value="View date logs" class="noprint">
-                        <input type="button" name="submit1" value="Print" onclick="javascript:window.print()" class="noprint">
+                        <button class="dentro">View date logs</button>
+                        <button onclick="javascript:window.print()"  class="dentro">Print</button>
                         </form>
                     </th>
                     </tr>';

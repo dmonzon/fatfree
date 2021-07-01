@@ -18,21 +18,27 @@ function getItems($tsql,$x){
     require("cn.php");
     $conn = sqlsrv_connect($serverName, $connectionOptions);
     $getResults = sqlsrv_query($conn, $tsql . $x, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+    if (!$getResults) {
+        die( "<pre>" . print_r( sqlsrv_errors(). "</pre>", true)); ;
+    }else{
+        //print_r($stmt);
+    }
     $items = '<tr><th colspan="1" style="text-align: center;">Param Name</th>
     <th colspan="1" style="text-align: center;">Value</th></tr>';
     //$i = 0;
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_NUMERIC)) {
-        $items .= '<form name="forma" action="'. $f3->get('BASE').'/params" target="_self" method="POST">
-            <tr><th style="text-align: right;">
+        $items .= '<form name="forma" action="/fatfree/params/" target="_self" method="POST">
+            <tr><th style="text-align: right;" >
                 <input type="hidden" value="' . $row[0] . '" name="optID">
                 <label>' . $row[1] . '</th><th>
                 <input type="text" name="optVal" value="' . $row[2] . '" style="width: 80%;"></label>
-                <input type="submit" value="update" name="submit">
+                <button class="dentro">update</button>
                 <input type="hidden" name="req" value="2">
                 <input type="hidden" name="itemID" value="'.$x.'">
                 <input type="hidden" name="oldVal" value="' . $row[2] . '">
             </th></tr></form>';
     } //end while
+    //echo $f3->get('BASE');
     if(sqlsrv_num_rows($getResults)>0) {
         //$items .= '<tr><th colspan="2" style="text-align: right;"></th></tr></form>';
     }else{
@@ -46,13 +52,13 @@ function getItems($tsql,$x){
             </th>
         </tr>
         <tr>
-            <form name="main1" action="'.$f3->get('BASE').'/params" target="_self" method="POST">
+            <form name="main1" action="/fatfree/params" target="_self" method="POST">
             <th>
                 <input type="text" name="txtParam" placeholder="Panam Name" style="width: 80%;" required>
             </th>
             <th>
                 <input type="text" name="txtValue" placeholder="Panam Value" style="width: 70%;" required>
-                <input type="submit" value="Submit" name="submit">
+                <button class="dentro">Submit</button>
                 <input type="hidden" name="req" value="3">
                 <input type="hidden" name="itemID" value="' . $x . '">
             </th>

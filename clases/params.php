@@ -28,7 +28,7 @@
                                     ($f3->get('POST.itemID')) ? $item = $f3->get('POST.itemID') : $item = 0;
                                     echo ddBuilder('itemID',10,'',"select id,p.pkgName,p.description from tbl_Packages p order by 2",$item);
                                 ?><br>
-                                <input type="submit" name="submit" value="Go">
+                                <button class="dentro">Go</button>
                                 <input type="hidden" name="req" value="1">
                             </form>
                         </th>
@@ -39,6 +39,7 @@
         <?php
             //print_r($_POST);
             if($f3->get('POST.req') == 1){
+                //echo "aqui estamos " . $f3->get('POST.itemID')."<br>";
                 $x = $f3->get('POST.itemID'); //$proj = $_POST['proj'];
                 echo getItems("select id,opt_name,opt_value,pkg_id
                 from [dbo].[tbl_PackageOptions]
